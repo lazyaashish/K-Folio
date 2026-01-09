@@ -1,4 +1,10 @@
 import mongoose, { Document, Schema } from "mongoose";
+import {
+  createActionSchema,
+  updateActionSchema,
+  type CreateActionInput,
+  type UpdateActionInput,
+} from "../validators/actionSchema";
 
 export type ActionType = "comment" | "like";
 
@@ -32,18 +38,23 @@ const ActionSchema = new Schema<IAction>(
     value: {
       type: String,
       default: null,
-      validate: {
-        validator: function (this: IAction, v: string | null) {
-          if (this.action_type === "comment") {
-            return typeof v === "string" && v.trim().length > 0;
-          }
-          return true; 
-        },
-        message: "Comment text is required for comment action",
-      },
     },
   },
   { timestamps: true }
 );
 
-export default mongoose.model<IAction>("Action", ActionSchema);
+export const ActionModel = mongoose.model<IAction>("Action", ActionSchema);
+
+// Validation helpers using Zod
+export const validateCreateAction = async (data: unknown) => {
+  return createActionSchema.parseAsync(data);
+};
+
+export const validateUpdateAction = async (data: unknown) => {
+  return updateActionSchema.parseAsync(data);
+};
+
+// Type exports
+export type { CreateActionInput, UpdateActionInput };
+
+export default ActionModel;
