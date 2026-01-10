@@ -60,15 +60,15 @@ const SignUpCard: React.FC<SignInProps> = ({ onSwitch }) => {
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-black flex items-center">
+    <div  className="relative min-h-screen w-full bg-black flex items-center">
       <div className="relative z-10 w-95 ml-20 rounded-2xl bg-[#524C90]/30 backdrop-blur-xl p-8 text-white">
-        
+
         {/* Shine Border */}
         <ShineBorder shineColor={["#2F5BFF", "white"]} />
 
         {/* Tabs */}
         <div className="mb-6 flex p-1 bg-[#11101E] rounded-md text-xs font-medium">
-          <button className="flex-1 py-2 rounded-md text-sm text-gray-400 transition hover:-translate-y-px" onClick={onSwitch}>
+          <button className="flex-1 py-2 rounded-md text-sm text-gray-400 transition hover:-translate-y-px">
             Log In
           </button>
           <button className="flex-1 py-2 rounded-md bg-[#2F5BFF] text-sm font-medium transition hover:-translate-y-px">
@@ -77,13 +77,15 @@ const SignUpCard: React.FC<SignInProps> = ({ onSwitch }) => {
         </div>
 
         {/* Header */}
-        <h2 className="text-2xl font-semibold">Create Your Account</h2>
-        <p className="mt-1 text-sm text-gray-400">
+        <h2 className="text-2xl font-semibold">
+          Create Your Account
+        </h2>
+        <p className="text-gray-400 text-sm mt-1">
           Join the community and start sharing today.
         </p>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           {error && (
             <div className="rounded-md border border-red-500/40 bg-red-500/10 px-3 py-2 text-sm text-red-400">
               {error}
